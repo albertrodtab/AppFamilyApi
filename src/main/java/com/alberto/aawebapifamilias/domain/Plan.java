@@ -29,5 +29,8 @@ public class Plan {
     private LocalDate fechaFin;
     @Column
     private Boolean importante;
+    @Column
+    private String descripcion;
+
 
 }
