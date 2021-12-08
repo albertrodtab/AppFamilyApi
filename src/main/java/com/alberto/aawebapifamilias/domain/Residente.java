@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -24,11 +25,12 @@ public class Residente {
     @Column
     private String dni;
     @Column (name = "fecha_nacimiento")
-    @JsonFormat (pattern = "dd-MM-yyyy")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate fechaNacimiento;
     @Column
     private String sexo;
     @Column
+    @NumberFormat(style = NumberFormat.Style.NUMBER)
     private float saldo;
 
 }
