@@ -44,7 +44,7 @@ public class FamiliarController {
     }
 
     @PutMapping("/familiar/{id}")
-    public Familiar modyfiFamiliar (@RequestBody Familiar familiar, @PathVariable long id){
+    public Familiar modifyFamiliar(@RequestBody Familiar familiar, @PathVariable long id){
         Familiar newFamiliar = familiarService.modifyFamiliar(id, familiar);
         return newFamiliar;
     }

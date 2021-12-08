@@ -44,7 +44,7 @@ public class ResidenteController {
     }
 
     @PutMapping("/residente/{id}")
-    public Residente modyfiResidente (@RequestBody Residente residente, @PathVariable long id){
+    public Residente modifyResidente(@RequestBody Residente residente, @PathVariable long id){
         Residente newResidente = residenteService.modifyResidente(id, residente);
         return newResidente;
     }
