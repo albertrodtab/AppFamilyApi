@@ -1,6 +1,8 @@
 package com.alberto.aawebapifamilias.controller;
 
+import com.alberto.aawebapifamilias.domain.Plan;
 import com.alberto.aawebapifamilias.domain.Residente;
+import com.alberto.aawebapifamilias.service.PlanService;
 import com.alberto.aawebapifamilias.service.ResidenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +14,8 @@ public class ResidenteController {
 
     @Autowired
     private ResidenteService residenteService;
+    @Autowired
+    private PlanService planService;
 
     @PostMapping("/residentes")
     public Residente addResidente (@RequestBody Residente residente){
@@ -20,9 +24,17 @@ public class ResidenteController {
     }
 
     @GetMapping("/residente/{id}")
-    public Residente getFamiliar (@PathVariable long id){
+    public Residente getResidente (@PathVariable long id){
         Residente residente = residenteService.findResidente(id);
         return residente;
+    }
+
+    @GetMapping("/residente/{id}/planes")
+    public List<Plan> getPlanesByResidente (@PathVariable long id){
+        List<Plan> planes = null;
+        Residente residente = residenteService.findResidente(id);
+        planes = planService.findPlanesByResidente(residente);
+        return planes;
     }
 
     @GetMapping("/residentes")
