@@ -1,7 +1,9 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Profesional;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,11 +45,17 @@ public class ProfesionalServiceImpl implements ProfesionalService{
     @Override
     public Profesional modifyProfesional(long id, Profesional newProfesional) {
         Profesional profesional = profesionalRepository.findAllById(id);
-        profesional.setNombre(newProfesional.getNombre());
-        profesional.setApellidos(newProfesional.getApellidos());
-        profesional.setDni(newProfesional.getDni());
-        profesional.setFechaNacimiento(newProfesional.getFechaNacimiento());
-        profesional.setCategoria(newProfesional.getCategoria());
+        /*
+         * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
+         * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.
+         */
+        ModelMapper mapper = new ModelMapper();
+        profesional = mapper.map(newProfesional, Profesional.class);
+//        profesional.setNombre(newProfesional.getNombre());
+//        profesional.setApellidos(newProfesional.getApellidos());
+//        profesional.setDni(newProfesional.getDni());
+//        profesional.setFechaNacimiento(newProfesional.getFechaNacimiento());
+//        profesional.setCategoria(newProfesional.getCategoria());
         return profesionalRepository.save(profesional);
     }
 }
