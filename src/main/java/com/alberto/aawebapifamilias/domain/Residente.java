@@ -1,5 +1,6 @@
 package com.alberto.aawebapifamilias.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,6 +9,7 @@ import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,5 +34,11 @@ public class Residente {
     @Column
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private float saldo;
+
+    //como ya está relacionado en el otro lado aquí solo indico por que objeto tiene mapearse
+    // 1 residente varios planes, pero 1 plan solo 1 residente
+    @OneToMany(mappedBy = "residente")
+    @JsonBackReference
+    private List<Plan> planes;
 
 }

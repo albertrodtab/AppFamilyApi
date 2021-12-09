@@ -1,6 +1,7 @@
 package com.alberto.aawebapifamilias.controller;
 
 import com.alberto.aawebapifamilias.domain.Plan;
+import com.alberto.aawebapifamilias.domain.dto.PlanDto;
 import com.alberto.aawebapifamilias.service.PlanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +15,8 @@ public class PlanController {
     private PlanService planService;
 
     @PostMapping("/planes")
-    public Plan addPlan (@RequestBody Plan plan){
-        Plan newPlan = planService.addPlan(plan);
+    public Plan addPlan (@RequestBody PlanDto planDto){
+        Plan newPlan = planService.addPlan(planDto);
         return newPlan;
     }
 
