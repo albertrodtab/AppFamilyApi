@@ -1,7 +1,9 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Plan;
 import com.alberto.aawebapifamilias.repository.PlanRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,12 +45,18 @@ public class PlanServiceImpl implements PlanService{
     @Override
     public Plan modifyPlan(long id, Plan newPlan) {
         Plan plan = planRepository.findAllById(id);
-        plan.setNombrePlan(newPlan.getNombrePlan());
-        plan.setTerapia(newPlan.getTerapia());
-        plan.setDescripcion(newPlan.getDescripcion());
-        plan.setFechaInicio(newPlan.getFechaInicio());
-        plan.setFechaFin(newPlan.getFechaFin());
-        plan.setImportante(newPlan.getImportante());
+        /*
+         * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
+         * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.
+         */
+        ModelMapper mapper = new ModelMapper();
+        plan = mapper.map(newPlan, Plan.class);
+//        plan.setNombrePlan(newPlan.getNombrePlan());
+//        plan.setTerapia(newPlan.getTerapia());
+//        plan.setDescripcion(newPlan.getDescripcion());
+//        plan.setFechaInicio(newPlan.getFechaInicio());
+//        plan.setFechaFin(newPlan.getFechaFin());
+//        plan.setImportante(newPlan.getImportante());
         return planRepository.save(plan);
     }
 }
