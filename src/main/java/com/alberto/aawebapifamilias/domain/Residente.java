@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity (name = "residente")
+@Entity (name = "residentes")
 public class Residente {
 
     @Id
@@ -38,7 +38,7 @@ public class Residente {
     //como ya está relacionado en el otro lado aquí solo indico por que objeto tiene mapearse
     // 1 residente varios planes, pero 1 plan solo 1 residente
     @OneToMany(mappedBy = "residente")
-    @JsonBackReference
+    @JsonBackReference(value = "residente-plan")
     private List<Plan> planes;
 
 }

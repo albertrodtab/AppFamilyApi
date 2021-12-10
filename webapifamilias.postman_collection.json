@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"44091652P\",\r\n    \"nombre\": \"Alberto\",\r\n    \"apellidos\": \"Rodriguez Taboada\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"categoria\": \"Enfermero\"\r\n}",
+					"raw": "{\r\n    \"dni\": \"78451236P\",\r\n    \"nombre\": \"Rosario\",\r\n    \"apellidos\": \"Lopez Gonzalez\",\r\n    \"fechaNacimiento\": \"26-09-1982\",\r\n    \"categoria\": \"Terapeuta Ocupacional\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombrePlan\": \"Pasatiempos Cognitivos\",\r\n    \"terapia\": \"Terapias Cógnitivas\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Realización de pasatiempos adaptados al nivel cognitivo del residente, sopas de letras, crucigramas, etc...\",\r\n    \"residente\": 33,\r\n    \"profesional\": 1\r\n}",
+					"raw": "{\r\n    \"nombrePlan\": \"Pasatiempos Cognitivos\",\r\n    \"terapia\": \"Terapias Cógnitivas\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Realización de pasatiempos adaptados al nivel cognitivo del residente, sopas de letras, crucigramas, etc...\",\r\n    \"residente\": 1,\r\n    \"profesional\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -420,7 +420,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/plan/2",
+					"raw": "http://localhost:7080/plan/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -428,7 +428,7 @@
 					"port": "7080",
 					"path": [
 						"plan",
-						"2"
+						"1"
 					]
 				}
 			},
