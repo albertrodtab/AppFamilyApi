@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "familiar")
+@Entity(name = "familiares")
 public class Familiar {
 
     @Id
