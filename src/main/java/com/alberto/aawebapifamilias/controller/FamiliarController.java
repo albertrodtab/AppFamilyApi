@@ -1,6 +1,7 @@
 package com.alberto.aawebapifamilias.controller;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
+import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.exception.ErrorResponse;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 import com.alberto.aawebapifamilias.service.FamiliarService;

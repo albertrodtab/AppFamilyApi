@@ -10,6 +10,7 @@ import org.springframework.format.annotation.NumberFormat;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -40,5 +41,9 @@ public class Residente {
     @OneToMany(mappedBy = "residente")
     @JsonBackReference(value = "residente-plan")
     private List<Plan> planes;
+
+    @ManyToMany(mappedBy = "residentes")
+    private Set<Familiar> familiares;
+
 
 }

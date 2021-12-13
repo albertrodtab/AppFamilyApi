@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -28,5 +30,8 @@ public class Familiar {
     private LocalDate fechaNacimiento;
     @Column
     private String telefono;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    private List<Residente> residentes;
 
 }
