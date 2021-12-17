@@ -64,7 +64,7 @@ public class FamiliarController {
     //Esta excepción genérica me sirve para controlar culquier excepción que yo no haya pensado y controlado.
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
-        ErrorResponse errorResponse = new ErrorResponse("999", "Internal server error");
+        ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

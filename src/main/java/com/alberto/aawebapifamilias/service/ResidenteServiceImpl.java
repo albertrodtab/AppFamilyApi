@@ -1,7 +1,12 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
+import com.alberto.aawebapifamilias.domain.dto.ResidenteDto;
+import com.alberto.aawebapifamilias.exception.CentroNotFoundException;
+import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
+import com.alberto.aawebapifamilias.repository.CentroRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,15 +19,24 @@ public class ResidenteServiceImpl implements ResidenteService{
 
     @Autowired
     private ResidenteRepository residenteRepository;
+    @Autowired
+    private CentroRepository centroRepository;
 
     @Override
-    public Residente addResidente(Residente residente) {
+    public Residente addResidente(ResidenteDto residenteDto) throws CentroNotFoundException {
+        Centro centro = centroRepository.findById(residenteDto.getCentro())
+                .orElseThrow(CentroNotFoundException::new);
+
+        ModelMapper mapper = new ModelMapper();
+        Residente residente = mapper.map(residenteDto, Residente.class);
+        residente.setCentro(centro);
         return residenteRepository.save(residente);
     }
 
     @Override
-    public Residente findResidente(long id) {
-        return residenteRepository.findAllById(id);
+    public Residente findResidente(long id) throws ResidenteNotFoundException {
+        return residenteRepository.findById(id).
+                orElseThrow(ResidenteNotFoundException::new);
     }
 
     @Override
@@ -36,15 +50,17 @@ public class ResidenteServiceImpl implements ResidenteService{
     }
 
     @Override
-    public Residente removeResidente(long id) {
-        Residente residente = residenteRepository.findAllById(id);
+    public Residente removeResidente(long id) throws ResidenteNotFoundException {
+        Residente residente = residenteRepository.findById(id).
+                orElseThrow(ResidenteNotFoundException::new);
         residenteRepository.delete(residente);
         return residente;
     }
 
     @Override
-    public Residente modifyResidente(long id, Residente newResidente) {
-        Residente residente = residenteRepository.findAllById(id);
+    public Residente modifyResidente(long id, Residente newResidente) throws ResidenteNotFoundException {
+        Residente residente = residenteRepository.findById(id).
+                orElseThrow(ResidenteNotFoundException::new);
         /*
          * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
          * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.

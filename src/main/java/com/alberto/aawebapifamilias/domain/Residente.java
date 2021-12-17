@@ -39,11 +39,13 @@ public class Residente {
     //como ya está relacionado en el otro lado aquí solo indico por que objeto tiene mapearse
     // 1 residente varios planes, pero 1 plan solo 1 residente
     @OneToMany(mappedBy = "residente")
-    @JsonBackReference(value = "residente-plan")
+    @JsonBackReference(value = "residentePlan")
     private List<Plan> planes;
 
-    @ManyToMany(mappedBy = "residentes")
-    private Set<Familiar> familiares;
+    @ManyToOne
+    @JoinColumn(name = "centro_id")
+    @JsonBackReference(value = "esidenteCentro")
+    private Centro centro;
 
 
 }

@@ -26,7 +26,7 @@ public class ResidenteDto {
     private String sexo;
     @NumberFormat(style = NumberFormat.Style.NUMBER)
     private float saldo;
-    private long familiar;
+    private long centro;
 
 
 }

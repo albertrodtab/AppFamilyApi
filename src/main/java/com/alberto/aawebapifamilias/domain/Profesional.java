@@ -34,7 +34,7 @@ public class Profesional {
     //como ya está relacionado en el otro lado aquí solo indico por que objeto tiene mapearse
     // 1 profesional varios planes, pero 1 plan solo 1 profesional
     @OneToMany(mappedBy = "profesional")
-    @JsonBackReference (value = "profesional-plan")
+    @JsonBackReference (value = "profesionalPlan")
     private List<Plan> planes;
 
 }
