@@ -2,7 +2,6 @@ package com.alberto.aawebapifamilias.service;
 
 import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.exception.CentroNotFoundException;
-import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.CentroRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
@@ -23,6 +22,12 @@ public class CentroServiceImpl implements CentroService{
     @Override
     public Centro addCentro(Centro centro) {
         return centroRepository.save(centro);
+    }
+
+    @Override
+    public Centro findCentro(String nombre) throws CentroNotFoundException {
+        return (Centro) centroRepository.findByNombre(nombre).
+                orElseThrow(CentroNotFoundException::new);
     }
 
     @Override
@@ -61,6 +66,11 @@ public class CentroServiceImpl implements CentroService{
         ModelMapper mapper = new ModelMapper();
         centro = mapper.map(newCentro, Centro.class);
         return centroRepository.save(centro);
+    }
+
+    @Override
+    public List<Centro> findAllCentros(String nombre, String numRegistro, String email) {
+        return centroRepository.findByNombreOrNumRegistroOrEmail(nombre, numRegistro, email);
     }
 
 

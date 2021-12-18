@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"44091652P\",\r\n    \"nombre\": \"Alberto Rodriguez\",\r\n    \"apellidos\": \"Taboada\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}",
+					"raw": "{\r\n    \"dni\": \"44091652P\",\r\n    \"nombre\": \"Fernando\",\r\n    \"apellidos\": \"RodriguezTaboada\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -28,6 +28,34 @@
 					"port": "7080",
 					"path": [
 						"familiares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addCentro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Residencia Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro, Lalín\",\r\n    \"numRegistro\": \"G458963\",\r\n    \"email\": \"residencia.lalin@alberto.com\",\r\n    \"telefono\": \"600623180\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/centros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centros"
 					]
 				}
 			},
@@ -68,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"78459632L\",\r\n    \"nombre\": \"Mª Rosa\",\r\n    \"apellidos\": \"Taboada Saa\",\r\n    \"fechaNacimiento\": \"03-08-1947\",\r\n    \"sexo\": \"F\",\r\n    \"saldo\": \"\"\r\n}",
+					"raw": "{\r\n    \"dni\": \"78459632L\",\r\n    \"nombre\": \"Eudosia\",\r\n    \"apellidos\": \"Taboada Saa\",\r\n    \"fechaNacimiento\": \"03-08-1947\",\r\n    \"sexo\": \"F\",\r\n    \"saldo\": 50,\r\n    \"centro\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombrePlan\": \"Pasatiempos Cognitivos\",\r\n    \"terapia\": \"Terapias Cógnitivas\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Realización de pasatiempos adaptados al nivel cognitivo del residente, sopas de letras, crucigramas, etc...\",\r\n    \"residente\": 1,\r\n    \"profesional\": 1\r\n}",
+					"raw": "{\r\n    \"nombrePlan\": \"GeroBasket\",\r\n    \"terapia\": \"Juegos Lúdicos\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Baloncesto adaptado\",\r\n    \"residente\": 1,\r\n    \"profesional\": 1 \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -118,6 +146,34 @@
 			"response": []
 		},
 		{
+			"name": "Relacion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"residenteId\": 1,\r\n    \"familiarId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/relacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"relacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "consultFamiliar",
 			"request": {
 				"method": "GET",
@@ -131,6 +187,26 @@
 					"port": "7080",
 					"path": [
 						"familiar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultCentroNombre",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/centro/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centro",
 						"1"
 					]
 				}
@@ -183,7 +259,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/residente/33",
+					"raw": "http://localhost:7080/residente/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -191,7 +267,7 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"33"
+						"1"
 					]
 				}
 			},
@@ -203,7 +279,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/residente/33/planes",
+					"raw": "http://localhost:7080/residente/1/planes",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -211,7 +287,7 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"33",
+						"1",
 						"planes"
 					]
 				}
@@ -232,6 +308,25 @@
 					"port": "7080",
 					"path": [
 						"familiares"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultCentros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/centros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centros"
 					]
 				}
 			},
@@ -320,6 +415,46 @@
 			"response": []
 		},
 		{
+			"name": "consultCentrosVariosCriterios",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/centros?all=false",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centros"
+					],
+					"query": [
+						{
+							"key": "all",
+							"value": "false"
+						},
+						{
+							"key": "nombre",
+							"value": "Residencia Lalín",
+							"disabled": true
+						},
+						{
+							"key": "numRegistro",
+							"value": "G458963",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "centrodedia.lalin@alberto.com",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "consultPlanesById",
 			"request": {
 				"method": "GET",
@@ -400,7 +535,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/familiar/3",
+					"raw": "http://localhost:7080/familiar/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -408,7 +543,27 @@
 					"port": "7080",
 					"path": [
 						"familiar",
-						"3"
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteCentro",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/centro/20",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centro",
+						"20"
 					]
 				}
 			},
@@ -460,7 +615,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/residente/2",
+					"raw": "http://localhost:7080/residente/34",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -468,7 +623,7 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"2"
+						"34"
 					]
 				}
 			},
@@ -481,7 +636,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n    \"id\": 33,\r\n    \"nombre\": \"Alberto\",\r\n    \"apellidos\": \"Rodriguez Taboada\",\r\n    \"dni\": \"44091652P\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}\r\n",
+					"raw": " {\r\n    \"id\": 1,\r\n    \"nombre\": \"Fernando\",\r\n    \"apellidos\": \"Rodriguez Taboada\",\r\n    \"dni\": \"44091652P\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -497,6 +652,35 @@
 					"port": "7080",
 					"path": [
 						"familiar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateCentro",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n    \"id\": 1,\r\n    \"nombre\": \"Residencia Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro 365015, Lalín, Pontevedra\",\r\n    \"numRegistro\": \"G458963\",\r\n    \"email\": \"residencia.lalin@alberto.com\",\r\n    \"telefono\": \"600623180\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/centro/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centro",
 						"1"
 					]
 				}
@@ -568,7 +752,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 33,\r\n    \"nombre\": \"Alberto\",\r\n    \"apellidos\": \"Taboada Rodriguez\",\r\n    \"dni\": \"44091652P\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"sexo\": \"M\",\r\n    \"saldo\": 50.22\r\n}",
+					"raw": "{\r\n    \"id\": 65,\r\n    \"dni\": \"78459632L\",\r\n    \"nombre\": \"Mª Rosa\",\r\n    \"apellidos\": \"Taboada Saa\",\r\n    \"fechaNacimiento\": \"03-08-1947\",\r\n    \"sexo\": \"F\",\r\n    \"saldo\": 50\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -576,7 +760,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7080/residente/34",
+					"raw": "http://localhost:7080/residente/65",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -584,7 +768,7 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"34"
+						"65"
 					]
 				}
 			},

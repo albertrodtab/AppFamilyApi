@@ -7,12 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity(name = "familiares")
 public class Familiar {
 
@@ -30,6 +28,19 @@ public class Familiar {
     private LocalDate fechaNacimiento;
     @Column
     private String telefono;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "rel_fam_res",
+            joinColumns = @JoinColumn(name = "familiar_id", nullable = false),
+            inverseJoinColumns = @JoinColumn(name="residente_id", nullable = false)
+    )
+    List<Residente> residentes;
+
+    public Familiar(){
+        residentes = new ArrayList<>();
+    }
+
 
 
 }

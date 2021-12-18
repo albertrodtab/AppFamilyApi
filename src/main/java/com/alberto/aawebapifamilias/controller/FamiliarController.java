@@ -5,6 +5,8 @@ import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.exception.ErrorResponse;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 import com.alberto.aawebapifamilias.service.FamiliarService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,14 +17,17 @@ import java.util.List;
 @RestController
 public class FamiliarController {
 
+    private final Logger logger = LoggerFactory.getLogger(FamiliarController.class);
+
     @Autowired
     private FamiliarService familiarService;
 
     @PostMapping("/familiares")
-    public Familiar addFamiliar(@RequestBody Familiar familiar){
+    public Familiar addFamiliar(@RequestBody Familiar familiar) {
         Familiar newFamiliar = familiarService.addFamiliar(familiar);
         return newFamiliar;
     }
+
 
     @GetMapping("/familiar/{id}")
     public Familiar getFamiliar (@PathVariable long id) throws FamiliarNotFoundException {
