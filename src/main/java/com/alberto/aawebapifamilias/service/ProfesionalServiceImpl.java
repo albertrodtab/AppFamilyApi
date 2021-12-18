@@ -2,6 +2,8 @@ package com.alberto.aawebapifamilias.service;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Profesional;
+import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
+import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,9 @@ public class ProfesionalServiceImpl implements ProfesionalService{
     }
 
     @Override
-    public Profesional findProfesional(long id) {
-        return profesionalRepository.findAllById(id);
+    public Profesional findProfesional(long id) throws ProfesionalNotFoundException{
+        return profesionalRepository.findById(id).
+                orElseThrow(ProfesionalNotFoundException::new);
     }
 
     @Override
@@ -36,15 +39,17 @@ public class ProfesionalServiceImpl implements ProfesionalService{
     }
 
     @Override
-    public Profesional removeProfesional(long id) {
-        Profesional profesional = profesionalRepository.findAllById(id);
+    public Profesional removeProfesional(long id) throws ProfesionalNotFoundException {
+        Profesional profesional = profesionalRepository.findById(id).
+                orElseThrow(ProfesionalNotFoundException::new);
         profesionalRepository.delete(profesional);
         return profesional;
     }
 
     @Override
-    public Profesional modifyProfesional(long id, Profesional newProfesional) {
-        Profesional profesional = profesionalRepository.findAllById(id);
+    public Profesional modifyProfesional(long id, Profesional newProfesional) throws ProfesionalNotFoundException {
+        Profesional profesional = profesionalRepository.findById(id).
+                orElseThrow(ProfesionalNotFoundException::new);
         /*
          * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
          * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.

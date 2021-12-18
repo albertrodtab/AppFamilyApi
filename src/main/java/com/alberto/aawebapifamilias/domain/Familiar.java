@@ -31,7 +31,5 @@ public class Familiar {
     @Column
     private String telefono;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    private List<Residente> residentes;
 
 }

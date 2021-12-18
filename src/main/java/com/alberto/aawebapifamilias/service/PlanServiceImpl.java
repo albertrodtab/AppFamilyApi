@@ -1,10 +1,12 @@
 package com.alberto.aawebapifamilias.service;
 
-import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Plan;
 import com.alberto.aawebapifamilias.domain.Profesional;
 import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.PlanDto;
+import com.alberto.aawebapifamilias.exception.PlanNotFoundException;
+import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
+import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.PlanRepository;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
@@ -25,10 +27,12 @@ public class PlanServiceImpl implements PlanService{
     private ProfesionalRepository profesionalRepository;
 
     @Override
-    public Plan addPlan(PlanDto planDto) {
+    public Plan addPlan(PlanDto planDto) throws ResidenteNotFoundException, ProfesionalNotFoundException {
         //tengo que recuperar los objetos enteros para pasarlos a la base de datos no solo el id
-        Residente residente = residenteRepository.findAllById(planDto.getResidente());
-        Profesional profesional = profesionalRepository.findAllById(planDto.getProfesional());
+        Residente residente = residenteRepository.findById(planDto.getResidente())
+                .orElseThrow(ResidenteNotFoundException::new);
+        Profesional profesional = profesionalRepository.findById(planDto.getProfesional())
+                .orElseThrow(ProfesionalNotFoundException::new);
         /*
         vamos a utilizar un mapeador(introducir dependencia modelmapper) para no tener que ir indicandolo al
         nuevo objeto todos los atributos
@@ -45,8 +49,8 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan findPlan(long id) {
-        return planRepository.findAllById(id);
+    public Plan findPlan(long id) throws PlanNotFoundException {
+        return planRepository.findById(id).orElseThrow(PlanNotFoundException::new);
     }
 
     @Override
@@ -60,15 +64,20 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan removePlan(long id) {
-        Plan plan = planRepository.findAllById(id);
+    public Plan removePlan(long id) throws PlanNotFoundException{
+        Plan plan = planRepository.findById(id).orElseThrow(PlanNotFoundException::new);
         planRepository.delete(plan);
         return plan;
     }
 
     @Override
-    public Plan modifyPlan(long id, Plan newPlan) {
-        Plan plan = planRepository.findAllById(id);
+    public Plan modifyPlan(long id, PlanDto newPlan) throws PlanNotFoundException, ResidenteNotFoundException, ProfesionalNotFoundException {
+        Plan plan = planRepository.findById(id).
+                orElseThrow(PlanNotFoundException::new);
+        Residente residente = residenteRepository.findById(newPlan.getResidente())
+                .orElseThrow(ResidenteNotFoundException::new);
+        Profesional profesional = profesionalRepository.findById(newPlan.getProfesional())
+                .orElseThrow(ProfesionalNotFoundException::new);
         /*
          * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
          * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.

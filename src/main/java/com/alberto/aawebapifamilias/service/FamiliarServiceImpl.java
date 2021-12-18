@@ -1,25 +1,20 @@
 package com.alberto.aawebapifamilias.service;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
-import com.alberto.aawebapifamilias.domain.Residente;
-import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 import com.alberto.aawebapifamilias.repository.FamiliarRepository;
-import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class FamiliarServiceImpl implements FamiliarService{
 
     @Autowired
     private FamiliarRepository familiarRepository;
-    @Autowired
-    private ResidenteRepository residenteRepository;
 
     @Override
     public Familiar addFamiliar(Familiar familiar) {

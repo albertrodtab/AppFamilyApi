@@ -41,7 +41,7 @@ public class Plan {
     //indica la columa por la que estaran relacionadas que tendra la clave ajena residente_id
     @JoinColumn(name = "residente_id")
     //para evitar el bucle de que asocie residentes completos a planes y sea algo infinito añadimos @JsonBackReference
-    @JsonBackReference(value = "plan-residente")
+    @JsonBackReference(value = "planResidente")
     private Residente residente;
 
     //Debemos establecer como se relaciona con los profesionales
@@ -51,7 +51,7 @@ public class Plan {
     //indica la columa por la que estaran relacionadas que tendra la clave ajena profesional_id
     @JoinColumn(name = "profesional_id")
     //para evitar el bucle de que asocie profesionales completos a planes y sea algo infinito añadimos @JsonBackReference
-    @JsonBackReference(value = "plan-profesional")
+    @JsonBackReference(value = "planProfesional")
     private Profesional profesional;
 
 
