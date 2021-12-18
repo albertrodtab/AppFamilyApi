@@ -5,16 +5,17 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.engine.internal.Cascade;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity (name = "residentes")
 public class Residente {
 
@@ -46,6 +47,13 @@ public class Residente {
     @JoinColumn(name = "centro_id")
     @JsonBackReference(value = "esidenteCentro")
     private Centro centro;
+
+    @ManyToMany (mappedBy = "residentes")
+    List<Familiar> familiares;
+
+    public Residente(){
+        familiares = new ArrayList<>();
+    }
 
 
 }

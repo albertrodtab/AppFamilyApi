@@ -10,6 +10,8 @@ public interface CentroService {
 
   Centro addCentro(Centro centro);
 
+  Centro findCentro(String id) throws CentroNotFoundException;
+
   Centro findCentro(long id) throws CentroNotFoundException;
 
   List<Centro> findAll();
@@ -21,5 +23,5 @@ public interface CentroService {
   Centro modifyCentro(long id, Centro newCentro) throws CentroNotFoundException;
 
 
-
+  List<Centro> findAllCentros(String nombre, String numRegistro, String email);
 }

@@ -1,5 +1,6 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.controller.ResidenteController;
 import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
@@ -9,6 +10,8 @@ import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.CentroRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +20,20 @@ import java.util.List;
 @Service
 public class ResidenteServiceImpl implements ResidenteService{
 
+    private final Logger logger = LoggerFactory.getLogger(ResidenteController.class);
+
     @Autowired
     private ResidenteRepository residenteRepository;
     @Autowired
     private CentroRepository centroRepository;
+
+    @Override
+    public void addRelacion(Residente residente, Familiar familiar) {
+        logger.info("Inicio addRelación");
+        residente.getFamiliares().add(familiar);
+        residenteRepository.save(residente);
+        logger.info("Fin addRelacion");
+    }
 
     @Override
     public Residente addResidente(ResidenteDto residenteDto) throws CentroNotFoundException {

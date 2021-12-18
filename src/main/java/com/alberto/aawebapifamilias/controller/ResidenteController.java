@@ -1,13 +1,13 @@
 package com.alberto.aawebapifamilias.controller;
 
+import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Plan;
 import com.alberto.aawebapifamilias.domain.Residente;
+import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
 import com.alberto.aawebapifamilias.domain.dto.ResidenteDto;
-import com.alberto.aawebapifamilias.exception.CentroNotFoundException;
-import com.alberto.aawebapifamilias.exception.ErrorResponse;
-import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
-import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
+import com.alberto.aawebapifamilias.exception.*;
 import com.alberto.aawebapifamilias.service.CentroService;
+import com.alberto.aawebapifamilias.service.FamiliarService;
 import com.alberto.aawebapifamilias.service.PlanService;
 import com.alberto.aawebapifamilias.service.ResidenteService;
 import org.slf4j.ILoggerFactory;
@@ -27,6 +27,8 @@ public class ResidenteController {
 
     @Autowired
     private ResidenteService residenteService;
+    @Autowired
+    private FamiliarService familiarService;
     @Autowired
     private PlanService planService;
     @Autowired
@@ -91,7 +93,7 @@ public class ResidenteController {
     //creo también un método que capture la excepción y la devuelve un poco más elegante
     @ExceptionHandler(ResidenteNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleResidenteNotFoundException(ResidenteNotFoundException rnfe){
-        ErrorResponse errorResponse = new ErrorResponse("404", rnfe.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse("1", rnfe.getMessage());
         //cuando devuelva una excepcion anoto un logger de error y cuando salte una excepción capturo la traza y la lanzo.
         //tambien puedo pasar la excepción completa.
         logger.error(rnfe.getMessage(), rnfe);
@@ -101,9 +103,29 @@ public class ResidenteController {
     //Esta excepción genérica me sirve para controlar culquier excepción que yo no haya pensado y controlado.
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
-        ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
+        ErrorResponse errorResponse = new ErrorResponse( "999","Internal server error");
         logger.error(exception.getMessage(), exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /*
+    * Relacionar un familiar con un usuario
+    * */
+    @PostMapping("/relacion")
+    public ResponseEntity<Response> relacion(@RequestBody RelacionDTO relacionDTO)
+            throws ResidenteNotFoundException, FamiliarNotFoundException {
+        logger.info("Inicio relacion");
+        Residente residente = residenteService.findResidente(relacionDTO.getResidenteId());
+        logger.info("Residente encontrado " + residente.getId());
+        Familiar familiar = familiarService.findFamiliar(relacionDTO.getFamiliarId());
+        logger.info("Familiar encontrado " + familiar.getId());
+        residenteService.addRelacion(residente, familiar);
+
+
+        Response response = new Response("1", "Residente añadido al familiar " +
+                relacionDTO.getFamiliarId());
+        logger.info("Fin relacion");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 
