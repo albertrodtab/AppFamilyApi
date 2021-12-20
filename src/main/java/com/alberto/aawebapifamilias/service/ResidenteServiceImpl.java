@@ -28,14 +28,6 @@ public class ResidenteServiceImpl implements ResidenteService{
     private CentroRepository centroRepository;
 
     @Override
-    public void addRelacion(Residente residente, Familiar familiar) {
-        logger.info("Inicio addRelación");
-        residente.getFamiliares().add(familiar);
-        residenteRepository.save(residente);
-        logger.info("Fin addRelacion");
-    }
-
-    @Override
     public Residente addResidente(ResidenteDto residenteDto) throws CentroNotFoundException {
         Centro centro = centroRepository.findById(residenteDto.getCentro())
                 .orElseThrow(CentroNotFoundException::new);

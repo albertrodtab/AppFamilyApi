@@ -14,5 +14,4 @@ public interface PlanRepository extends CrudRepository<Plan, Long> {
     List<Plan> findAll();
     List<Plan> findAllPlanesById(long id);
 
-    List<Plan> findByResidente(Residente residente);
 }

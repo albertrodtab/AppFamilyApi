@@ -48,19 +48,6 @@ public class ResidenteController {
         return residente;
     }
 
-    @GetMapping("/residente/{id}/planes")
-    public List<Plan> getPlanesByResidente (@PathVariable long id) throws ResidenteNotFoundException{
-        logger.info("Inicio getPlanesByResidente");
-        List<Plan> planes = null;
-        logger.info("Buscar el residente: " + id);
-        Residente residente = residenteService.findResidente(id);
-        logger.info("Residente encontrado: " + residente.getId());
-        planes = planService.findPlanesByResidente(residente);
-        logger.info("Planes del residente: " + planes.contains(residente));
-        logger.info("Fin getPlanesByResidente");
-        return planes;
-    }
-
     @GetMapping("/residentes")
     public List<Residente> getResidenteById
             (@RequestParam(name = "residente", defaultValue = "0") long id){
@@ -100,32 +87,19 @@ public class ResidenteController {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CentroNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleCentroNotFoundException(CentroNotFoundException cnfe){
+        ErrorResponse errorResponse = new ErrorResponse("404", cnfe.getMessage());
+        logger.error(cnfe.getMessage(), cnfe);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
     //Esta excepción genérica me sirve para controlar culquier excepción que yo no haya pensado y controlado.
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
         ErrorResponse errorResponse = new ErrorResponse( "999","Internal server error");
         logger.error(exception.getMessage(), exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    /*
-    * Relacionar un familiar con un usuario
-    * */
-    @PostMapping("/relacion")
-    public ResponseEntity<Response> relacion(@RequestBody RelacionDTO relacionDTO)
-            throws ResidenteNotFoundException, FamiliarNotFoundException {
-        logger.info("Inicio relacion");
-        Residente residente = residenteService.findResidente(relacionDTO.getResidenteId());
-        logger.info("Residente encontrado " + residente.getId());
-        Familiar familiar = familiarService.findFamiliar(relacionDTO.getFamiliarId());
-        logger.info("Familiar encontrado " + familiar.getId());
-        residenteService.addRelacion(residente, familiar);
-
-
-        Response response = new Response("1", "Residente añadido al familiar " +
-                relacionDTO.getFamiliarId());
-        logger.info("Fin relacion");
-        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
 

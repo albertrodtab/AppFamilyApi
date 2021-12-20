@@ -35,14 +35,12 @@ public class Plan {
     private String descripcion;
 
     //Debemos establecer como se relaciona con los residentes
-    //Indicamos el tipo de relación, 1 plan solo tendrán asociado un residente, pero un residente puede tener n planes
-    // por eso es ManyToOne porque plan es el lado n
-    @ManyToOne
-    //indica la columa por la que estaran relacionadas que tendra la clave ajena residente_id
-    @JoinColumn(name = "residente_id")
+    //Indicamos el tipo de relación, 1 plan tendrá asociado uno o n residentes, y un residente puede tener 1 o n planes
+    // por eso es ManyToMany porque plan es el lado n
+    @ManyToMany(cascade = CascadeType.ALL)
     //para evitar el bucle de que asocie residentes completos a planes y sea algo infinito añadimos @JsonBackReference
     @JsonBackReference(value = "planResidente")
-    private Residente residente;
+    private List<Residente> residentes;
 
     //Debemos establecer como se relaciona con los profesionales
     //Indicamos el tipo de relación, 1 plan solo tendrán asociado un profesional, pero un profesional puede tener n planes
