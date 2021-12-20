@@ -25,7 +25,6 @@ public class PlanDto {
     private LocalDate fechaFin;
     private Boolean importante;
     private String descripcion;
-    private long residente;
     private long profesional;
 
 

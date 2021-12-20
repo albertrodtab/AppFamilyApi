@@ -24,4 +24,6 @@ public interface CentroService {
 
 
   List<Centro> findAllCentros(String nombre, String numRegistro, String email);
+
+  int numResidentes(long id) throws CentroNotFoundException;
 }

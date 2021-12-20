@@ -1,9 +1,13 @@
 package com.alberto.aawebapifamilias.service;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
+import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 import com.alberto.aawebapifamilias.repository.FamiliarRepository;
+import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +17,13 @@ import java.util.List;
 @Service
 public class FamiliarServiceImpl implements FamiliarService{
 
+    private final Logger logger = LoggerFactory.getLogger(FamiliarServiceImpl.class);
+
     @Autowired
     private FamiliarRepository familiarRepository;
+
+    @Autowired
+    private ResidenteRepository residenteRepository;
 
     @Override
     public Familiar addFamiliar(Familiar familiar) {
@@ -61,6 +70,17 @@ public class FamiliarServiceImpl implements FamiliarService{
 //        familiar.setNombre(newFamiliar.getNombre());
 //        familiar.setTelefono(newFamiliar.getTelefono());
         return familiarRepository.save(familiar);
+    }
+
+    @Override
+    public void addRelacion(Residente residente, Familiar familiar) {
+        logger.info("Inicio addRelación");
+        residente.getFamiliares().add(familiar);
+        familiar.getResidentes().add(residente);
+        residenteRepository.save(residente);
+        familiarRepository.save(familiar);
+
+        logger.info("Fin addRelacion");
     }
 
 

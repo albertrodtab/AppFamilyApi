@@ -1,9 +1,15 @@
 package com.alberto.aawebapifamilias.controller;
 
+import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Plan;
+import com.alberto.aawebapifamilias.domain.Residente;
+import com.alberto.aawebapifamilias.domain.dto.ParticipaDTO;
 import com.alberto.aawebapifamilias.domain.dto.PlanDto;
+import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
 import com.alberto.aawebapifamilias.exception.*;
 import com.alberto.aawebapifamilias.service.PlanService;
+import com.alberto.aawebapifamilias.service.ProfesionalService;
+import com.alberto.aawebapifamilias.service.ResidenteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +26,35 @@ public class PlanController {
 
     @Autowired
     private PlanService planService;
+    @Autowired
+    private ResidenteService residenteService;
+    @Autowired
+    private ProfesionalService profesionalService;
 
     @PostMapping("/planes")
-    public Plan addPlan (@RequestBody PlanDto planDto) throws ProfesionalNotFoundException, ResidenteNotFoundException {
+    public Plan addPlan (@RequestBody PlanDto planDto) throws ProfesionalNotFoundException {
         Plan newPlan = planService.addPlan(planDto);
         return newPlan;
+    }
+
+    /*
+     * Relacionar un familiar con un residente
+     * */
+    @PostMapping("/participa")
+    public ResponseEntity<Response> participa(@RequestBody ParticipaDTO participaDTO)
+            throws PlanNotFoundException, ResidenteNotFoundException {
+        logger.info("Inicio participa");
+        Residente residente = residenteService.findResidente(participaDTO.getResidenteId());
+        logger.info("Residente encontrado " + residente.getId());
+        Plan plan = planService.findPlan(participaDTO.getPlanId());
+        logger.info("Plan encontrado " + plan.getId());
+        planService.addParticipa(residente, plan);
+
+
+        Response response = new Response("1", "Residente añadido al Plan " +
+                participaDTO.getPlanId());
+        logger.info("Fin participa");
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @GetMapping("/plan/{id}")

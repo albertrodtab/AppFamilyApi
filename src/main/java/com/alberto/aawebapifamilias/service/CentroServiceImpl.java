@@ -73,5 +73,12 @@ public class CentroServiceImpl implements CentroService{
         return centroRepository.findByNombreOrNumRegistroOrEmail(nombre, numRegistro, email);
     }
 
+    @Override
+    public int numResidentes(long id) throws CentroNotFoundException {
+        Centro centro = centroRepository.findById(id)
+                .orElseThrow(CentroNotFoundException::new);
+        return centroRepository.numResidentes(id);
+    }
+
 
 }

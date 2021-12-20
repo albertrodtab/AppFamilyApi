@@ -10,8 +10,6 @@ import java.util.List;
 
 public interface ResidenteService {
 
-    void addRelacion(Residente residente, Familiar familiar);
-
     Residente addResidente(ResidenteDto residenteDto) throws CentroNotFoundException;
 
     Residente findResidente(long id) throws ResidenteNotFoundException;

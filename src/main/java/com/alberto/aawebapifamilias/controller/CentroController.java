@@ -84,6 +84,15 @@ public class CentroController {
         return newCentro;
     }
 
+    // Contar los residentes totales de un centro. SQL
+    @GetMapping("/centro/{id}/numResidentes")
+    public int numResidentes(@PathVariable long id) throws CentroNotFoundException {
+        logger.info("Inicio numResidentes " + id);
+        int residentes = centroService.numResidentes(id);
+        logger.info("rin numResidentes " + id);
+        return residentes;
+    }
+
     //creo también un método que capture la excepción y la devuelve un poco más elegante
     @ExceptionHandler(CentroNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleCentroNotFoundException(CentroNotFoundException cnfe){

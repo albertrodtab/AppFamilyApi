@@ -2,6 +2,8 @@ package com.alberto.aawebapifamilias.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -39,7 +41,7 @@ public class Residente {
 
     //como ya está relacionado en el otro lado aquí solo indico por que objeto tiene mapearse
     // 1 residente varios planes, pero 1 plan solo 1 residente
-    @OneToMany(mappedBy = "residente")
+    @ManyToMany(mappedBy = "residentes")
     @JsonBackReference(value = "residentePlan")
     private List<Plan> planes;
 
@@ -49,10 +51,14 @@ public class Residente {
     private Centro centro;
 
     @ManyToMany (mappedBy = "residentes")
-    List<Familiar> familiares;
+    //para evitar serializaciones pongo el backreference en el otro lado Pero tengo que mejorarlo todavía.
+
+
+    private List<Familiar> familiares;
 
     public Residente(){
         familiares = new ArrayList<>();
+        planes = new ArrayList<>();
     }
 
 

@@ -1,6 +1,6 @@
 package com.alberto.aawebapifamilias.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,7 +35,9 @@ public class Familiar {
             joinColumns = @JoinColumn(name = "familiar_id", nullable = false),
             inverseJoinColumns = @JoinColumn(name="residente_id", nullable = false)
     )
-    List<Residente> residentes;
+    //para evitar serializaciones Pero tengo que mejorarlo todavía.
+    @JsonBackReference(value = "familiarResidente")
+    private List<Residente> residentes;
 
     public Familiar(){
         residentes = new ArrayList<>();

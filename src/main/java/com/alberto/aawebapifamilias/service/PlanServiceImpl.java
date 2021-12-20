@@ -11,6 +11,8 @@ import com.alberto.aawebapifamilias.repository.PlanRepository;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,8 @@ import java.util.List;
 
 @Service
 public class PlanServiceImpl implements PlanService{
+
+    private final Logger logger = LoggerFactory.getLogger(FamiliarServiceImpl.class);
 
     @Autowired
     private PlanRepository planRepository;
@@ -27,10 +31,8 @@ public class PlanServiceImpl implements PlanService{
     private ProfesionalRepository profesionalRepository;
 
     @Override
-    public Plan addPlan(PlanDto planDto) throws ResidenteNotFoundException, ProfesionalNotFoundException {
+    public Plan addPlan(PlanDto planDto) throws  ProfesionalNotFoundException {
         //tengo que recuperar los objetos enteros para pasarlos a la base de datos no solo el id
-        Residente residente = residenteRepository.findById(planDto.getResidente())
-                .orElseThrow(ResidenteNotFoundException::new);
         Profesional profesional = profesionalRepository.findById(planDto.getProfesional())
                 .orElseThrow(ProfesionalNotFoundException::new);
         /*
@@ -43,7 +45,6 @@ public class PlanServiceImpl implements PlanService{
          */
         ModelMapper mapper = new ModelMapper();
         Plan plan = mapper.map(planDto, Plan.class);
-        plan.setResidente(residente);
         plan.setProfesional(profesional);
         return planRepository.save(plan);
     }
@@ -51,6 +52,17 @@ public class PlanServiceImpl implements PlanService{
     @Override
     public Plan findPlan(long id) throws PlanNotFoundException {
         return planRepository.findById(id).orElseThrow(PlanNotFoundException::new);
+    }
+
+    @Override
+    public void addParticipa(Residente residente, Plan plan) {
+        logger.info("Inicio addParticipa");
+        residente.getPlanes().add(plan);
+        plan.getResidentes().add(residente);
+        residenteRepository.save(residente);
+        planRepository.save(plan);
+
+        logger.info("Fin addParticipa");
     }
 
     @Override
@@ -71,11 +83,9 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan modifyPlan(long id, PlanDto newPlan) throws PlanNotFoundException, ResidenteNotFoundException, ProfesionalNotFoundException {
+    public Plan modifyPlan(long id, PlanDto newPlan) throws PlanNotFoundException, ProfesionalNotFoundException {
         Plan plan = planRepository.findById(id).
                 orElseThrow(PlanNotFoundException::new);
-        Residente residente = residenteRepository.findById(newPlan.getResidente())
-                .orElseThrow(ResidenteNotFoundException::new);
         Profesional profesional = profesionalRepository.findById(newPlan.getProfesional())
                 .orElseThrow(ProfesionalNotFoundException::new);
         /*
@@ -93,8 +103,6 @@ public class PlanServiceImpl implements PlanService{
         return planRepository.save(plan);
     }
 
-    @Override
-    public List<Plan> findPlanesByResidente(Residente residente) {
-        return planRepository.findByResidente(residente);
-    }
+
+
 }

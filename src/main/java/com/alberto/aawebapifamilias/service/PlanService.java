@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface PlanService {
 
-    Plan addPlan(PlanDto planDto) throws ResidenteNotFoundException, ProfesionalNotFoundException;
+    Plan addPlan(PlanDto planDto) throws  ProfesionalNotFoundException;
 
     Plan findPlan(long id) throws PlanNotFoundException;
 
@@ -21,7 +21,8 @@ public interface PlanService {
 
     Plan removePlan(long id) throws PlanNotFoundException;
 
-    Plan modifyPlan(long id, PlanDto planDto) throws PlanNotFoundException, ResidenteNotFoundException, ProfesionalNotFoundException ;
+    Plan modifyPlan(long id, PlanDto planDto) throws PlanNotFoundException, ProfesionalNotFoundException ;
 
-    List<Plan> findPlanesByResidente(Residente residente);
+    void addParticipa(Residente residente, Plan plan);
+
 }

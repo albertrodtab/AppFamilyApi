@@ -1,10 +1,15 @@
 package com.alberto.aawebapifamilias.controller;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
+import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
+import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
 import com.alberto.aawebapifamilias.exception.ErrorResponse;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
+import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
+import com.alberto.aawebapifamilias.exception.Response;
 import com.alberto.aawebapifamilias.service.FamiliarService;
+import com.alberto.aawebapifamilias.service.ResidenteService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +27,34 @@ public class FamiliarController {
     @Autowired
     private FamiliarService familiarService;
 
+    @Autowired
+    private ResidenteService residenteService;
+
     @PostMapping("/familiares")
     public Familiar addFamiliar(@RequestBody Familiar familiar) {
         Familiar newFamiliar = familiarService.addFamiliar(familiar);
         return newFamiliar;
     }
 
+    /*
+     * Relacionar un familiar con un residente
+     * */
+    @PostMapping("/relacion")
+    public ResponseEntity<Response> relacion(@RequestBody RelacionDTO relacionDTO)
+            throws FamiliarNotFoundException, ResidenteNotFoundException {
+        logger.info("Inicio relacion");
+        Residente residente = residenteService.findResidente(relacionDTO.getResidenteId());
+        logger.info("Residente encontrado " + residente.getId());
+        Familiar familiar = familiarService.findFamiliar(relacionDTO.getFamiliarId());
+        logger.info("Familiar encontrado " + familiar.getId());
+        familiarService.addRelacion(residente, familiar);
+
+
+        Response response = new Response("1", "Residente añadido al familiar " +
+                relacionDTO.getFamiliarId());
+        logger.info("Fin relacion");
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 
     @GetMapping("/familiar/{id}")
     public Familiar getFamiliar (@PathVariable long id) throws FamiliarNotFoundException {
@@ -72,7 +99,6 @@ public class FamiliarController {
         ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
-
 
 
 }
