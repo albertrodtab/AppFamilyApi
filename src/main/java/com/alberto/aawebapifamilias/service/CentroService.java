@@ -8,9 +8,12 @@ import java.util.List;
 public interface CentroService {
 
 
+  Centro patchCentro(long id, String telefono) throws CentroNotFoundException;
+
+
   Centro addCentro(Centro centro);
 
-  Centro findCentro(String id) throws CentroNotFoundException;
+  Centro findCentro(String nombre) throws CentroNotFoundException;
 
   Centro findCentro(long id) throws CentroNotFoundException;
 

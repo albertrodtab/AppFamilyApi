@@ -37,7 +37,11 @@ public class Plan {
     //Debemos establecer como se relaciona con los residentes
     //Indicamos el tipo de relación, 1 plan tendrá asociado uno o n residentes, y un residente puede tener 1 o n planes
     // por eso es ManyToMany porque plan es el lado n
-    @ManyToMany(cascade = CascadeType.ALL)
+    //CascadeType.Persist y Merge para que no permita añadir dos veces la misma relación y permita borrar si eliminar el otro elemento asociado.
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     //para evitar el bucle de que asocie residentes completos a planes y sea algo infinito añadimos @JsonBackReference
     @JsonBackReference(value = "planResidente")
     private List<Residente> residentes;
@@ -51,6 +55,8 @@ public class Plan {
     //para evitar el bucle de que asocie profesionales completos a planes y sea algo infinito añadimos @JsonBackReference
     @JsonBackReference(value = "planProfesional")
     private Profesional profesional;
+
+
 
 
 }

@@ -63,4 +63,12 @@ public class ProfesionalServiceImpl implements ProfesionalService{
 //        profesional.setCategoria(newProfesional.getCategoria());
         return profesionalRepository.save(profesional);
     }
+
+    @Override
+    public Profesional patchProfesional(long id, String categoria) throws ProfesionalNotFoundException {
+        Profesional profesional = profesionalRepository.findById(id).
+                orElseThrow(ProfesionalNotFoundException::new);
+        profesional.setCategoria(categoria);
+        return profesionalRepository.save(profesional);
+    }
 }

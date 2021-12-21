@@ -80,4 +80,12 @@ public class ResidenteServiceImpl implements ResidenteService{
 //        residente.setSaldo(newResidente.getSaldo());
         return residenteRepository.save(residente);
     }
+
+    @Override
+    public Residente patchProfesional(long id, float saldo) throws ResidenteNotFoundException {
+        Residente residente = residenteRepository.findById(id).
+                orElseThrow(ResidenteNotFoundException::new);
+        residente.setSaldo(saldo);
+        return residenteRepository.save(residente);
+    }
 }

@@ -1,13 +1,11 @@
 package com.alberto.aawebapifamilias.controller;
 
+import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
-import com.alberto.aawebapifamilias.exception.ErrorResponse;
-import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
-import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
-import com.alberto.aawebapifamilias.exception.Response;
+import com.alberto.aawebapifamilias.exception.*;
 import com.alberto.aawebapifamilias.service.FamiliarService;
 import com.alberto.aawebapifamilias.service.ResidenteService;
 import org.slf4j.Logger;
@@ -84,6 +82,15 @@ public class FamiliarController {
     public Familiar modifyFamiliar(@RequestBody Familiar familiar, @PathVariable long id) throws FamiliarNotFoundException{
         Familiar newFamiliar = familiarService.modifyFamiliar(id, familiar);
         return newFamiliar;
+    }
+
+    // Cambiar el telefono de un familiar
+    @PatchMapping("/familiar/{id}")
+    public Familiar patchFamiliar (@PathVariable long id, @RequestBody String telefono) throws FamiliarNotFoundException {
+        logger.info("Start PatchFamiliar " + id);
+        Familiar familiar = familiarService.patchfamiliar(id, telefono);
+        logger.info("End patchFamiliar " + id);
+        return familiar;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante

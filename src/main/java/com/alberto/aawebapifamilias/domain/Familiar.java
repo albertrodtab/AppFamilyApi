@@ -11,6 +11,7 @@ import java.util.*;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity(name = "familiares")
 public class Familiar {
 
@@ -29,7 +30,10 @@ public class Familiar {
     @Column
     private String telefono;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
     @JoinTable(
             name = "rel_fam_res",
             joinColumns = @JoinColumn(name = "familiar_id", nullable = false),
@@ -38,10 +42,6 @@ public class Familiar {
     //para evitar serializaciones Pero tengo que mejorarlo todavía.
     @JsonBackReference(value = "familiarResidente")
     private List<Residente> residentes;
-
-    public Familiar(){
-        residentes = new ArrayList<>();
-    }
 
 
 

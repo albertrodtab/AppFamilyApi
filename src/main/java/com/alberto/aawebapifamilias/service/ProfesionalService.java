@@ -19,4 +19,6 @@ public interface ProfesionalService {
     Profesional removeProfesional(long id) throws ProfesionalNotFoundException;
 
     Profesional modifyProfesional(long id, Profesional profesional) throws ProfesionalNotFoundException;
+
+    Profesional patchProfesional(long id, String categoria) throws ProfesionalNotFoundException;
 }

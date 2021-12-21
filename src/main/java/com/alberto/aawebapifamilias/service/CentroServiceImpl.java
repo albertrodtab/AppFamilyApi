@@ -20,6 +20,14 @@ public class CentroServiceImpl implements CentroService{
     private ResidenteRepository residenteRepository;
 
     @Override
+    public Centro patchCentro(long id, String telefono) throws CentroNotFoundException {
+        Centro centro = centroRepository.findById(id).
+                orElseThrow(CentroNotFoundException::new);
+        centro.setTelefono(telefono);
+        return centroRepository.save(centro);
+    }
+
+    @Override
     public Centro addCentro(Centro centro) {
         return centroRepository.save(centro);
     }

@@ -2,22 +2,19 @@ package com.alberto.aawebapifamilias.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.engine.internal.Cascade;
 import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity (name = "residentes")
 public class Residente {
 
@@ -52,14 +49,8 @@ public class Residente {
 
     @ManyToMany (mappedBy = "residentes")
     //para evitar serializaciones pongo el backreference en el otro lado Pero tengo que mejorarlo todavía.
-
-
     private List<Familiar> familiares;
 
-    public Residente(){
-        familiares = new ArrayList<>();
-        planes = new ArrayList<>();
-    }
 
 
 }

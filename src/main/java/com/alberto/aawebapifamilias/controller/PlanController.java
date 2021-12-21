@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -82,9 +83,27 @@ public class PlanController {
     }
 
     @PutMapping("/plan/{id}")
-    public Plan modifyPlan(@RequestBody PlanDto planDto, @PathVariable long id) throws PlanNotFoundException, ProfesionalNotFoundException, ResidenteNotFoundException {
-        Plan newPlan = planService.modifyPlan(id, planDto);
+    public Plan modifyPlan(@RequestBody Plan plan, @PathVariable long id) throws PlanNotFoundException, ProfesionalNotFoundException, ResidenteNotFoundException {
+        Plan newPlan = planService.modifyPlan(id, plan);
         return newPlan;
+    }
+
+    // Cambiar la importancia de un plan
+    @PatchMapping("/plan/{id}")
+    public Plan patchPlan (@PathVariable long id, @RequestBody boolean importante) throws PlanNotFoundException {
+        logger.info("Start PatchPlan " + id);
+        Plan plan = planService.patchPlan(id, importante);
+        logger.info("End patchPlan " + id);
+        return plan;
+    }
+
+    // Contar los residentes totales de un plan. SQL
+    @GetMapping("/plan/{id}/numResidentes")
+    public int numResidentesPlan(@PathVariable long id) throws PlanNotFoundException{
+        logger.info("Inicio numResidentesPlan " + id);
+        int residentes = planService.numResidentes(id);
+        logger.info("rin numResidentesPlan " + id);
+        return residentes;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante
