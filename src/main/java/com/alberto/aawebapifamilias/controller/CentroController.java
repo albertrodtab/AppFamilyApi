@@ -32,18 +32,10 @@ public class CentroController {
     }
 
     @GetMapping("/centro/{nombre}")
-    public Centro getCentro (@PathVariable String nombre) throws CentroNotFoundException {
+    public Centro getCentroNombre (@PathVariable String nombre) throws CentroNotFoundException {
         logger.info("Inicio getCentro{nombre}");
         Centro centro = centroService.findCentro(nombre);
         logger.info("Fin getCentro{nombre}");
-        return centro;
-    }
-
-    @GetMapping("/centro/{id}")
-    public Centro getCentro (@PathVariable long id) throws CentroNotFoundException {
-        logger.info("Inicio getCentro{id}");
-        Centro centro = centroService.findCentro(id);
-        logger.info("Fin getCentro{id}");
         return centro;
     }
 
@@ -91,6 +83,15 @@ public class CentroController {
         int residentes = centroService.numResidentes(id);
         logger.info("rin numResidentes " + id);
         return residentes;
+    }
+
+    // Cambiar el telefono de un centro
+    @PatchMapping("/centro/{id}")
+    public Centro patchCentro (@PathVariable long id, @RequestBody String telefono) throws CentroNotFoundException {
+        logger.info("Start Patchcentro " + id);
+        Centro centro = centroService.patchCentro(id, telefono);
+        logger.info("End patchCentro " + id);
+        return centro;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante

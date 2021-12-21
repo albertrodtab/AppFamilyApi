@@ -1,7 +1,9 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
+import com.alberto.aawebapifamilias.exception.CentroNotFoundException;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 import com.alberto.aawebapifamilias.repository.FamiliarRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
@@ -81,6 +83,14 @@ public class FamiliarServiceImpl implements FamiliarService{
         familiarRepository.save(familiar);
 
         logger.info("Fin addRelacion");
+    }
+
+    @Override
+    public Familiar patchfamiliar(long id, String telefono) throws FamiliarNotFoundException {
+        Familiar familiar = familiarRepository.findById(id)
+                .orElseThrow(FamiliarNotFoundException::new);
+        familiar.setTelefono(telefono);
+        return familiarRepository.save(familiar);
     }
 
 

@@ -1,8 +1,10 @@
 package com.alberto.aawebapifamilias.controller;
 
+import com.alberto.aawebapifamilias.domain.Plan;
 import com.alberto.aawebapifamilias.domain.Profesional;
 import com.alberto.aawebapifamilias.exception.ErrorResponse;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
+import com.alberto.aawebapifamilias.exception.PlanNotFoundException;
 import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
 import com.alberto.aawebapifamilias.service.ProfesionalService;
 import org.slf4j.Logger;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -56,6 +59,15 @@ public class ProfesionalController {
     public Profesional modifyProfesional(@RequestBody Profesional profesional, @PathVariable long id) throws ProfesionalNotFoundException {
         Profesional newProfesional = profesionalService.modifyProfesional(id, profesional);
         return newProfesional;
+    }
+
+    // Cambiar la categoria de un profesional
+    @PatchMapping("/profesional/{id}")
+    public Profesional patchProfesional (@PathVariable long id, @RequestBody String categoria) throws ProfesionalNotFoundException {
+        logger.info("Start PatchProfesional " + id);
+        Profesional profesional = profesionalService.patchProfesional(id, categoria);
+        logger.info("End patchprofesional " + id);
+        return profesional;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante

@@ -5,7 +5,6 @@ import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.PlanDto;
 import com.alberto.aawebapifamilias.exception.PlanNotFoundException;
 import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
-import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 
 import java.util.List;
 
@@ -21,8 +20,11 @@ public interface PlanService {
 
     Plan removePlan(long id) throws PlanNotFoundException;
 
-    Plan modifyPlan(long id, PlanDto planDto) throws PlanNotFoundException, ProfesionalNotFoundException ;
+    Plan modifyPlan(long id, Plan planDto) throws PlanNotFoundException, ProfesionalNotFoundException ;
 
     void addParticipa(Residente residente, Plan plan);
 
+    int numResidentes(long id)throws PlanNotFoundException;
+
+    Plan patchPlan(long id, boolean fechaFin) throws PlanNotFoundException;
 }

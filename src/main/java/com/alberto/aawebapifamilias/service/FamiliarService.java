@@ -1,5 +1,6 @@
 package com.alberto.aawebapifamilias.service;
 
+import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
@@ -23,5 +24,7 @@ public interface FamiliarService {
 
     void addRelacion(Residente residente, Familiar familiar);
 
-    //Familiar addFamiliar(FamiliarDto familiarDto);
+  Familiar patchfamiliar(long id, String telefono)throws FamiliarNotFoundException;
+
+  //Familiar addFamiliar(FamiliarDto familiarDto);
 }

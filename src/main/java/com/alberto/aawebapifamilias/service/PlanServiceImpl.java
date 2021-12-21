@@ -6,7 +6,6 @@ import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.PlanDto;
 import com.alberto.aawebapifamilias.exception.PlanNotFoundException;
 import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
-import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.PlanRepository;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
@@ -66,6 +65,21 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
+    public int numResidentes(long id) throws PlanNotFoundException {
+        Plan plan = planRepository.findById(id)
+                .orElseThrow(PlanNotFoundException::new);
+        return planRepository.numResidentes(id);
+    }
+
+    @Override
+    public Plan patchPlan(long id, boolean importancia) throws PlanNotFoundException {
+        Plan plan = planRepository.findById(id)
+                .orElseThrow(PlanNotFoundException::new);
+        plan.setImportante(importancia);
+        return planRepository.save(plan);
+    }
+
+    @Override
     public List<Plan> findAllPlanes() {
         return planRepository.findAll();
     }
@@ -83,11 +97,9 @@ public class PlanServiceImpl implements PlanService{
     }
 
     @Override
-    public Plan modifyPlan(long id, PlanDto newPlan) throws PlanNotFoundException, ProfesionalNotFoundException {
+    public Plan modifyPlan(long id, Plan newPlan) throws PlanNotFoundException, ProfesionalNotFoundException {
         Plan plan = planRepository.findById(id).
                 orElseThrow(PlanNotFoundException::new);
-        Profesional profesional = profesionalRepository.findById(newPlan.getProfesional())
-                .orElseThrow(ProfesionalNotFoundException::new);
         /*
          * Con ModelMapper evito escribir todos los getters y setters pero debo incluir el id tambien en Json
          * para que no me cree un nuevo familiar y si realice la modificación sobre el familiar indicado.

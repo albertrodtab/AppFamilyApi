@@ -2,6 +2,7 @@ package com.alberto.aawebapifamilias.controller;
 
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Plan;
+import com.alberto.aawebapifamilias.domain.Profesional;
 import com.alberto.aawebapifamilias.domain.Residente;
 import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
 import com.alberto.aawebapifamilias.domain.dto.ResidenteDto;
@@ -75,6 +76,15 @@ public class ResidenteController {
         Residente newResidente = residenteService.modifyResidente(id, residente);
         logger.info("Fin modifyResidente");
         return newResidente;
+    }
+
+    // Actualizar el saldo de un residente
+    @PatchMapping("/residente/{id}")
+    public Residente patchResidente (@PathVariable long id, @RequestBody float saldo) throws ResidenteNotFoundException {
+        logger.info("Start PatchResidente " + id);
+        Residente residente = residenteService.patchProfesional(id, saldo);
+        logger.info("End patchResidente " + id);
+        return residente;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante
