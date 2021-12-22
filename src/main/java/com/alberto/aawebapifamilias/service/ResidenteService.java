@@ -23,4 +23,6 @@ public interface ResidenteService {
     Residente modifyResidente(long id, Residente residente) throws ResidenteNotFoundException;
 
     Residente patchProfesional(long id, float saldo) throws ResidenteNotFoundException;
+
+    List<Residente> saldoMenor(float saldo);
 }

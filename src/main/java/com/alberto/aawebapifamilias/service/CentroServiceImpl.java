@@ -5,6 +5,8 @@ import com.alberto.aawebapifamilias.exception.CentroNotFoundException;
 import com.alberto.aawebapifamilias.repository.CentroRepository;
 import com.alberto.aawebapifamilias.repository.ResidenteRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +14,8 @@ import java.util.List;
 
 @Service
 public class CentroServiceImpl implements CentroService{
+
+    private final Logger logger = LoggerFactory.getLogger(CentroService.class);
 
     @Autowired
     private CentroRepository centroRepository;

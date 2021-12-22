@@ -1,25 +1,30 @@
 package com.alberto.aawebapifamilias.domain.dto;
 
-import com.alberto.aawebapifamilias.domain.Residente;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
-public class CentroDto {
+public class ComunicadoDto {
 
    /* Es una especie de clon del Centro pero no tiene correspondencia con la base de datos solo sirve para definir
     como quiero mostrar mis datos de una forma acotada
     Así envio los campos del centro y un campo a mayores que me servirá para saber con que residentes está relacionado.
     */
 
-    private String nombre;
-    private String direccion;
-    private String numRegistro;
-    private String email;
-    private String telefono;
+
+    private String nombreComunicado;
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate fechaEnvio;
+    private String descripcion;
+    private long profesional;
 
 
 }

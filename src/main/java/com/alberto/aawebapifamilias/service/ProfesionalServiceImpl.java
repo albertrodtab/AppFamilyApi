@@ -6,6 +6,8 @@ import com.alberto.aawebapifamilias.exception.ProfesionalNotFoundException;
 import com.alberto.aawebapifamilias.exception.ResidenteNotFoundException;
 import com.alberto.aawebapifamilias.repository.ProfesionalRepository;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,8 @@ import java.util.List;
 
 @Service
 public class ProfesionalServiceImpl implements ProfesionalService{
+
+    private final Logger logger = LoggerFactory.getLogger(ProfesionalService.class);
 
     @Autowired
     private ProfesionalRepository profesionalRepository;

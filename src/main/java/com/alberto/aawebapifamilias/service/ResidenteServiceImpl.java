@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class ResidenteServiceImpl implements ResidenteService{
 
-    private final Logger logger = LoggerFactory.getLogger(ResidenteController.class);
+    private final Logger logger = LoggerFactory.getLogger(ResidenteService.class);
 
     @Autowired
     private ResidenteRepository residenteRepository;
@@ -87,5 +87,10 @@ public class ResidenteServiceImpl implements ResidenteService{
                 orElseThrow(ResidenteNotFoundException::new);
         residente.setSaldo(saldo);
         return residenteRepository.save(residente);
+    }
+
+    @Override
+    public List<Residente> saldoMenor(float saldo) {
+        return residenteRepository.saldoMenor(saldo);
     }
 }

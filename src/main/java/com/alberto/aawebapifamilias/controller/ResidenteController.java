@@ -35,6 +35,7 @@ public class ResidenteController {
     @Autowired
     private CentroService centroService;
 
+    //Añadir Residente
     @PostMapping("/residentes")
     public Residente addResidente (@RequestBody ResidenteDto residenteDto) throws CentroNotFoundException {
         logger.info("Inicio addResidente");
@@ -42,13 +43,13 @@ public class ResidenteController {
         logger.info("Fin addResidente");
         return newResidente;
     }
-
+    //Consultar residente por id
     @GetMapping("/residente/{id}")
     public Residente getResidente (@PathVariable long id) throws ResidenteNotFoundException {
         Residente residente = residenteService.findResidente(id);
         return residente;
     }
-
+    //Consultar residentes
     @GetMapping("/residentes")
     public List<Residente> getResidenteById
             (@RequestParam(name = "residente", defaultValue = "0") long id){
@@ -61,7 +62,7 @@ public class ResidenteController {
         }
         return residentes;
     }
-
+    //Eliminar Residente
     @DeleteMapping("/residente/{id}")
     public Residente removeResidente (@PathVariable long id) throws ResidenteNotFoundException{
         logger.info("Inicio removeResidente");
@@ -70,6 +71,7 @@ public class ResidenteController {
         return residente;
     }
 
+    //Modificar residente
     @PutMapping("/residente/{id}")
     public Residente modifyResidente(@RequestBody Residente residente, @PathVariable long id) throws ResidenteNotFoundException{
         logger.info("Inicio modifyResidente");
@@ -85,6 +87,16 @@ public class ResidenteController {
         Residente residente = residenteService.patchProfesional(id, saldo);
         logger.info("End patchResidente " + id);
         return residente;
+    }
+
+    // Consultar los residentes con una saldo inferior a una cifra determinada. SQL
+    @GetMapping("/residentes/{saldo}")
+    public List<Residente> saldoMenor (@PathVariable float saldo) {
+        logger.info("Inicio saldoMenor " + saldo);
+        List<Residente> residentes = null;
+        residentes = residenteService.saldoMenor(saldo);
+        logger.info("Fin SaldoMenor " + saldo);
+        return residentes;
     }
 
     //creo también un método que capture la excepción y la devuelve un poco más elegante

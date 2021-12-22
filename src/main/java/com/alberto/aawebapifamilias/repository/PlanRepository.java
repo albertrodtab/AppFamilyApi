@@ -12,11 +12,15 @@ import java.util.List;
 public interface PlanRepository extends CrudRepository<Plan, Long> {
 
     Plan findAllById(long id);
+
     List<Plan> findAll();
+
     List<Plan> findAllPlanesById(long id);
 
     // Contar los residentes totales de un centro
     @Query(value = "SELECT COUNT(*) FROM \"planes_residentes\" WHERE \"planes_id\" = ?1", nativeQuery = true)
     int numResidentes(long planId);
 
+
 }
+
