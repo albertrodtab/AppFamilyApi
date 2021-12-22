@@ -4,11 +4,15 @@
 
 1. ENUNCIADO
 
+
 Una empresa dedicada al cuidado de personas mayores, salud mental y  discapacidad nos encarga el desarrollo de una
 App de comunicación con las familias. Indican que esta debe ser adaptable a iOS y ANDROID.
 
 Para ello debemos desarrollar una una aplicación web que conecte con una Base de Datos Relacional.
 Se debe implementar una aplicación web que gestione información almacenándola y recuperándola de una Base de
+   
+Para ello debemos desarrollar una una aplicación web que conecte con una Base de Datos Relacional.
+Se debe implementar una aplicación web que gestione información almacenándola y recuperándola de una Base de 
 Datos Relacional. Se pensará en un supuesto real y se crearán las operaciones necesarias.
 
 
