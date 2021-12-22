@@ -68,3 +68,54 @@
 2021-12-22 00:27:30,329 INFO org.apache.juli.logging.DirectJDKLog [http-nio-7080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
 2021-12-22 00:27:30,331 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-7080-exec-2] Initializing Servlet 'dispatcherServlet'
 2021-12-22 00:27:30,332 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-7080-exec-2] Completed initialization in 1 ms
+2021-12-22 01:11:27,525 INFO org.springframework.boot.StartupInfoLogger [main] Starting AawebapifamiliasApplication using Java 11.0.11 on Alberto with PID 3024 (C:\Users\alber\IdeaProjects\2021-2022\Acceso_A_Datos\aawebapifamilias\aawebapifamilias\target\classes started by alber in C:\Users\alber\IdeaProjects\2021-2022\Acceso_A_Datos\aawebapifamilias\aawebapifamilias)
+2021-12-22 01:11:27,529 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-12-22 01:11:28,349 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-22 01:11:28,450 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 88 ms. Found 5 JPA repository interfaces.
+2021-12-22 01:11:29,594 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 7080 (http)
+2021-12-22 01:11:29,608 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-7080"]
+2021-12-22 01:11:29,609 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-12-22 01:11:29,609 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-12-22 01:11:29,744 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-12-22 01:11:29,744 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2161 ms
+2021-12-22 01:11:29,780 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2021-12-22 01:11:29,987 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-12-22 01:11:29,995 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:C:/Users/alber/aawebapifamilias.db'
+2021-12-22 01:11:30,193 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-22 01:11:30,245 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-12-22 01:11:30,368 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-22 01:11:30,481 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-12-22 01:11:31,241 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-22 01:11:31,252 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-22 01:11:31,650 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-22 01:11:31,920 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-7080"]
+2021-12-22 01:11:31,942 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 7080 (http) with context path ''
+2021-12-22 01:11:31,951 INFO org.springframework.boot.StartupInfoLogger [main] Started AawebapifamiliasApplication in 4.921 seconds (JVM running for 5.741)
+2021-12-22 02:14:28,076 INFO org.springframework.boot.StartupInfoLogger [main] Starting AawebapifamiliasApplication using Java 11.0.11 on Alberto with PID 2976 (C:\Users\alber\IdeaProjects\2021-2022\Acceso_A_Datos\aawebapifamilias\aawebapifamilias\target\classes started by alber in C:\Users\alber\IdeaProjects\2021-2022\Acceso_A_Datos\aawebapifamilias\aawebapifamilias)
+2021-12-22 02:14:28,080 INFO org.springframework.boot.SpringApplication [main] No active profile set, falling back to default profiles: default
+2021-12-22 02:14:28,912 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2021-12-22 02:14:29,015 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 92 ms. Found 6 JPA repository interfaces.
+2021-12-22 02:14:30,024 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 7080 (http)
+2021-12-22 02:14:30,033 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing ProtocolHandler ["http-nio-7080"]
+2021-12-22 02:14:30,034 INFO org.apache.juli.logging.DirectJDKLog [main] Starting service [Tomcat]
+2021-12-22 02:14:30,034 INFO org.apache.juli.logging.DirectJDKLog [main] Starting Servlet engine: [Apache Tomcat/9.0.54]
+2021-12-22 02:14:30,144 INFO org.apache.juli.logging.DirectJDKLog [main] Initializing Spring embedded WebApplicationContext
+2021-12-22 02:14:30,144 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 2013 ms
+2021-12-22 02:14:30,173 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2021-12-22 02:14:30,334 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2021-12-22 02:14:30,341 INFO org.springframework.boot.autoconfigure.h2.H2ConsoleAutoConfiguration [main] H2 console available at '/h2-console'. Database available at 'jdbc:h2:file:C:/Users/alber/aawebapifamilias.db'
+2021-12-22 02:14:30,480 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2021-12-22 02:14:30,522 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.4.32.Final
+2021-12-22 02:14:30,645 INFO org.hibernate.annotations.common.reflection.java.JavaReflectionManager [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2021-12-22 02:14:30,755 INFO org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+2021-12-22 02:14:31,469 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2021-12-22 02:14:31,480 INFO org.springframework.orm.jpa.AbstractEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2021-12-22 02:14:31,868 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2021-12-22 02:14:32,145 INFO org.apache.juli.logging.DirectJDKLog [main] Starting ProtocolHandler ["http-nio-7080"]
+2021-12-22 02:14:32,165 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 7080 (http) with context path ''
+2021-12-22 02:14:32,174 INFO org.springframework.boot.StartupInfoLogger [main] Started AawebapifamiliasApplication in 4.572 seconds (JVM running for 5.361)
+2021-12-22 02:14:47,478 INFO org.apache.juli.logging.DirectJDKLog [http-nio-7080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-12-22 02:14:47,479 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-7080-exec-2] Initializing Servlet 'dispatcherServlet'
+2021-12-22 02:14:47,482 INFO org.springframework.web.servlet.FrameworkServlet [http-nio-7080-exec-2] Completed initialization in 3 ms
+2021-12-22 02:22:43,184 INFO com.alberto.aawebapifamilias.controller.ComunicadoController [http-nio-7080-exec-1] Start PatchComunicado 1
+2021-12-22 02:22:43,188 INFO com.alberto.aawebapifamilias.controller.ComunicadoController [http-nio-7080-exec-1] End patchComunicado 1

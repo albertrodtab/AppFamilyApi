@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class ResidenteServiceImpl implements ResidenteService{
 
-    private final Logger logger = LoggerFactory.getLogger(ResidenteController.class);
+    private final Logger logger = LoggerFactory.getLogger(ResidenteService.class);
 
     @Autowired
     private ResidenteRepository residenteRepository;

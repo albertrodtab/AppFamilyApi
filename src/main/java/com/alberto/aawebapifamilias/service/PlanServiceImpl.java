@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class PlanServiceImpl implements PlanService{
 
-    private final Logger logger = LoggerFactory.getLogger(FamiliarServiceImpl.class);
+    private final Logger logger = LoggerFactory.getLogger(PlanServiceImpl.class);
 
     @Autowired
     private PlanRepository planRepository;
