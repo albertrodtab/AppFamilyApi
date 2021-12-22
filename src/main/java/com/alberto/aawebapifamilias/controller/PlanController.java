@@ -34,7 +34,9 @@ public class PlanController {
 
     @PostMapping("/planes")
     public Plan addPlan (@RequestBody PlanDto planDto) throws ProfesionalNotFoundException {
+        logger.info("Inicio addFamiliar");
         Plan newPlan = planService.addPlan(planDto);
+        logger.info("Fin addFamiliar");
         return newPlan;
     }
 
@@ -78,22 +80,26 @@ public class PlanController {
 
     @DeleteMapping("/plan/{id}")
     public Plan removePlan (@PathVariable long id) throws PlanNotFoundException{
+        logger.info("Inicio removeFamiliar");
         Plan plan = planService.removePlan(id);
+        logger.info("Fin removeFamiliar");
         return plan;
     }
 
     @PutMapping("/plan/{id}")
-    public Plan modifyPlan(@RequestBody Plan plan, @PathVariable long id) throws PlanNotFoundException, ProfesionalNotFoundException, ResidenteNotFoundException {
+    public Plan modifyPlan(@RequestBody Plan plan, @PathVariable long id) throws PlanNotFoundException, ProfesionalNotFoundException {
+        logger.info("Inicio modigyFamiliar");
         Plan newPlan = planService.modifyPlan(id, plan);
+        logger.info("Fin modifyFamiliar");
         return newPlan;
     }
 
     // Cambiar la importancia de un plan
     @PatchMapping("/plan/{id}")
     public Plan patchPlan (@PathVariable long id, @RequestBody boolean importante) throws PlanNotFoundException {
-        logger.info("Start PatchPlan " + id);
+        logger.info("Inicio PatchPlan " + id);
         Plan plan = planService.patchPlan(id, importante);
-        logger.info("End patchPlan " + id);
+        logger.info("Fin patchPlan " + id);
         return plan;
     }
 
@@ -113,6 +119,17 @@ public class PlanController {
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ProfesionalNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleProfesionalNotFoundException(ProfesionalNotFoundException profnfe){
+        ErrorResponse errorResponse = new ErrorResponse("404", profnfe.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<ErrorResponse> handleResidenteNotFoundException(ResidenteNotFoundException rnfe){
+        ErrorResponse errorResponse = new ErrorResponse("1", rnfe.getMessage());
+        logger.error(rnfe.getMessage(), rnfe);
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
     //Esta excepción genérica me sirve para controlar culquier excepción que yo no haya pensado y controlado.
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){

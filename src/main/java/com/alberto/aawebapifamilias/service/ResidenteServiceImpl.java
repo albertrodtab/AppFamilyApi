@@ -88,4 +88,9 @@ public class ResidenteServiceImpl implements ResidenteService{
         residente.setSaldo(saldo);
         return residenteRepository.save(residente);
     }
+
+    @Override
+    public List<Residente> saldoMenor(float saldo) {
+        return residenteRepository.saldoMenor(saldo);
+    }
 }

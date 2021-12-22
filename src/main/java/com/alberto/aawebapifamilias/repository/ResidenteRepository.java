@@ -16,5 +16,9 @@ public interface ResidenteRepository extends CrudRepository<Residente, Long> {
 
     List<Residente> findAllResidentesById(long id);
 
+    // mostrar los residentes que su saldo sea menor que
 
+    //quiero mostrar solo el nombre y apellido y la columna de saldo pero no fui capaz de hacerlo.
+    @Query(value = "SELECT * FROM \"residentes\" WHERE \"saldo\" <= ?1", nativeQuery = true)
+    List<Residente> saldoMenor (float saldo);
 }

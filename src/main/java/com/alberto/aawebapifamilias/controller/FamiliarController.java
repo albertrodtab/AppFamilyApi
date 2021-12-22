@@ -1,9 +1,7 @@
 package com.alberto.aawebapifamilias.controller;
 
-import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
-import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.domain.dto.RelacionDTO;
 import com.alberto.aawebapifamilias.exception.*;
 import com.alberto.aawebapifamilias.service.FamiliarService;
@@ -30,7 +28,9 @@ public class FamiliarController {
 
     @PostMapping("/familiares")
     public Familiar addFamiliar(@RequestBody Familiar familiar) {
+        logger.info("Inicio addFamiliar");
         Familiar newFamiliar = familiarService.addFamiliar(familiar);
+        logger.info("Fin addFamiliar");
         return newFamiliar;
     }
 
@@ -61,7 +61,7 @@ public class FamiliarController {
     }
 
     @GetMapping("/familiares")
-    public List<Familiar> getFamiliaresById (@RequestParam(name = "familiar", defaultValue = "0") long id) throws FamiliarNotFoundException{
+    public List<Familiar> getFamiliaresById (@RequestParam(name = "familiar", defaultValue = "0") long id){
         List<Familiar> familiares;
 
         if(id == 0){
@@ -74,22 +74,26 @@ public class FamiliarController {
 
     @DeleteMapping("/familiar/{id}")
     public Familiar removeFamiliar (@PathVariable long id) throws FamiliarNotFoundException{
+        logger.info("Inicio removeFamiliar");
         Familiar familiar = familiarService.removeFamiliar(id);
+        logger.info("Fin removeFamiliar");
         return familiar;
     }
 
     @PutMapping("/familiar/{id}")
     public Familiar modifyFamiliar(@RequestBody Familiar familiar, @PathVariable long id) throws FamiliarNotFoundException{
+        logger.info("Inicio modifyFamiliar");
         Familiar newFamiliar = familiarService.modifyFamiliar(id, familiar);
+        logger.info("Fin modifyFamiliar");
         return newFamiliar;
     }
 
     // Cambiar el telefono de un familiar
     @PatchMapping("/familiar/{id}")
     public Familiar patchFamiliar (@PathVariable long id, @RequestBody String telefono) throws FamiliarNotFoundException {
-        logger.info("Start PatchFamiliar " + id);
+        logger.info("Inicio PatchFamiliar " + id);
         Familiar familiar = familiarService.patchfamiliar(id, telefono);
-        logger.info("End patchFamiliar " + id);
+        logger.info("Fin patchFamiliar " + id);
         return familiar;
     }
 
@@ -97,6 +101,13 @@ public class FamiliarController {
     @ExceptionHandler(FamiliarNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleFamiliarNotFoundException(FamiliarNotFoundException fnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", fnfe.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(CentroNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleResidenteNotFoundException(ResidenteNotFoundException rnfe){
+        ErrorResponse errorResponse = new ErrorResponse("404", rnfe.getMessage());
+        logger.error(rnfe.getMessage(), rnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 

@@ -55,8 +55,9 @@ public class ComunicadoController {
     }
 
     @PutMapping("/comunicado/{id}")
-    public Comunicado modifyComunicado(@RequestBody Comunicado comunicado, @PathVariable long id) throws ComunicadoNotFoundException {
-        Comunicado newComunicado = comunicadoService.modifyComunicado(id, comunicado);
+    public Comunicado modifyComunicado(@RequestBody ComunicadoDto comunicadoDto, @PathVariable long id)
+            throws ComunicadoNotFoundException, ProfesionalNotFoundException{
+        Comunicado newComunicado = comunicadoService.modifyComunicado(id, comunicadoDto);
         return newComunicado;
     }
 
@@ -74,6 +75,11 @@ public class ComunicadoController {
     @ExceptionHandler(ComunicadoNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProfesionalNotFoundException(ComunicadoNotFoundException comnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", comnfe.getMessage());
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    public ResponseEntity<ErrorResponse> handleProfesionalNotFoundException(ProfesionalNotFoundException profnfe){
+        ErrorResponse errorResponse = new ErrorResponse("404", profnfe.getMessage());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 

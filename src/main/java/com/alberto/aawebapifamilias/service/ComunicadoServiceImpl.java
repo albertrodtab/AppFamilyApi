@@ -62,12 +62,16 @@ public class ComunicadoServiceImpl implements ComunicadoService{
     }
 
     @Override
-    public Comunicado modifyComunicado(long id, Comunicado newComunicado) throws ComunicadoNotFoundException{
+    public Comunicado modifyComunicado(long id, ComunicadoDto comunicadoDto) throws ComunicadoNotFoundException, ProfesionalNotFoundException{
         Comunicado comunicado = comunicadoRepository.findById(id)
                 .orElseThrow(ComunicadoNotFoundException::new);
+        Profesional profesional = profesinalRepository.findById(comunicadoDto.getProfesional()).
+                orElseThrow(ProfesionalNotFoundException::new);
 
         ModelMapper mapper = new ModelMapper();
-        comunicado = mapper.map(newComunicado, Comunicado.class);//
+        comunicado = mapper.map(comunicadoDto, Comunicado.class);
+        comunicado.setId(id);
+        comunicado.setProfesional(profesional);
         return comunicadoRepository.save(comunicado);
     }
 
@@ -77,6 +81,11 @@ public class ComunicadoServiceImpl implements ComunicadoService{
                 .orElseThrow(ComunicadoNotFoundException::new);
         comunicado.setDescripcion(descripcion);
         return comunicadoRepository.save(comunicado);
+    }
+
+    @Override
+    public List<Comunicado> findComunicado(Profesional profesional) {
+        return comunicadoRepository.findByProfesional(profesional);
     }
 
 
