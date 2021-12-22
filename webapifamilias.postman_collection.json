@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"44091652P\",\r\n    \"nombre\": \"Fernando\",\r\n    \"apellidos\": \"RodriguezTaboada\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}",
+					"raw": "{\r\n    \"dni\": \"44091652P\",\r\n    \"nombre\": \"Martin\",\r\n    \"apellidos\": \"RodriguezTaboada\",\r\n    \"fechaNacimiento\": \"26-09-1988\",\r\n    \"telefono\": \"600623180\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,7 +40,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\": \"Residencia Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro, Lalín\",\r\n    \"numRegistro\": \"G458963\",\r\n    \"email\": \"residencia.lalin@alberto.com\",\r\n    \"telefono\": \"600623180\"\r\n}",
+					"raw": "{\r\n    \"nombre\": \"Centro de Día Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro, Lalín\",\r\n    \"numRegistro\": \"G698745\",\r\n    \"email\": \"cnetrodia.lalin@alberto.com\",\r\n    \"telefono\": \"700623180\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -68,7 +68,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"78451236P\",\r\n    \"nombre\": \"Rosario\",\r\n    \"apellidos\": \"Lopez Gonzalez\",\r\n    \"fechaNacimiento\": \"26-09-1982\",\r\n    \"categoria\": \"Terapeuta Ocupacional\"\r\n}",
+					"raw": "{\r\n    \"dni\": \"78451236P\",\r\n    \"nombre\": \"Maria\",\r\n    \"apellidos\": \"Lopez Gonzalez\",\r\n    \"fechaNacimiento\": \"26-09-1982\",\r\n    \"categoria\": \"Terapeuta Ocupacional\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -96,7 +96,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"dni\": \"78459632L\",\r\n    \"nombre\": \"Eudosia\",\r\n    \"apellidos\": \"Taboada Saa\",\r\n    \"fechaNacimiento\": \"03-08-1947\",\r\n    \"sexo\": \"F\",\r\n    \"saldo\": 50,\r\n    \"centro\": 1\r\n}",
+					"raw": "{\r\n    \"dni\": \"78459632L\",\r\n    \"nombre\": \"Victorino\",\r\n    \"apellidos\": \"Rodríguez Castro\",\r\n    \"fechaNacimiento\": \"03-08-1947\",\r\n    \"sexo\": \"M\",\r\n    \"saldo\": 150,\r\n    \"centro\": 1\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -124,7 +124,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombrePlan\": \"GeroBasket\",\r\n    \"terapia\": \"Juegos Lúdicos\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Baloncesto adaptado\",\r\n    \"residente\": 1,\r\n    \"profesional\": 1 \r\n}",
+					"raw": "{\r\n    \"nombrePlan\": \"GeroBasket\",\r\n    \"terapia\": \"Juegos Lúdicos\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Baloncesto adaptado\",\r\n    \"profesional\": 1 \r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,13 +146,41 @@
 			"response": []
 		},
 		{
+			"name": "addComunicado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombreComunicado\": \"Comunicado Salidas Navidad\",\r\n    \"fechaEnvio\": \"23-12-2021\",\r\n    \"descripcion\": \"Para poder realizar las salidas con vuestros familiares es necesario avisar al centro con antelación, y comunicar la hora de regreso\",\r\n    \"profesional\": 33 \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/comunicados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Relacion",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"residenteId\": 1,\r\n    \"familiarId\": 1\r\n}",
+					"raw": "{\r\n    \"residenteId\": 34,\r\n    \"familiarId\": 97\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -168,6 +196,34 @@
 					"port": "7080",
 					"path": [
 						"relacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Participa",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"residenteId\": 1,\r\n    \"planId\": 2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/participa",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"participa"
 					]
 				}
 			},
@@ -194,12 +250,12 @@
 			"response": []
 		},
 		{
-			"name": "consultCentroNombre",
+			"name": "consultCentroNombreOrId",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/centro/1",
+					"raw": "http://localhost:7080/centro/Residencia Lalín",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -207,7 +263,14 @@
 					"port": "7080",
 					"path": [
 						"centro",
-						"1"
+						"Residencia Lalín"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null,
+							"disabled": true
+						}
 					]
 				}
 			},
@@ -219,7 +282,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/plan/1",
+					"raw": "http://localhost:7080/plan/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -227,6 +290,26 @@
 					"port": "7080",
 					"path": [
 						"plan",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultComunicado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/comunicado/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicado",
 						"1"
 					]
 				}
@@ -254,6 +337,27 @@
 			"response": []
 		},
 		{
+			"name": "consultComunicadosByProfesional",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/profesional/1/comunicados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"profesional",
+						"1",
+						"comunicados"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "consultResidente",
 			"request": {
 				"method": "GET",
@@ -268,27 +372,6 @@
 					"path": [
 						"residente",
 						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "consultPlanesByResidente",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:7080/residente/1/planes",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "7080",
-					"path": [
-						"residente",
-						"1",
-						"planes"
 					]
 				}
 			},
@@ -327,6 +410,67 @@
 					"port": "7080",
 					"path": [
 						"centros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultTotalResidentesCentro",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/centro/1/numResidentes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centro",
+						"1",
+						"numResidentes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultTotalResidentesPlan",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/plan/33/numResidentes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"plan",
+						"33",
+						"numResidentes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultComunicados",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/comunicados",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicados"
 					]
 				}
 			},
@@ -390,6 +534,26 @@
 			"response": []
 		},
 		{
+			"name": "consultResidentesSaldo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/residentes/200",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"residentes",
+						"200"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "consultFamiliaresById",
 			"request": {
 				"method": "GET",
@@ -420,7 +584,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/centros?all=false",
+					"raw": "http://localhost:7080/centros?all=false&numRegistro=G698745&email=centrodia.lalin@alberto.com",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -441,13 +605,11 @@
 						},
 						{
 							"key": "numRegistro",
-							"value": "G458963",
-							"disabled": true
+							"value": "G698745"
 						},
 						{
 							"key": "email",
-							"value": "centrodedia.lalin@alberto.com",
-							"disabled": true
+							"value": "centrodia.lalin@alberto.com"
 						}
 					]
 				}
@@ -460,7 +622,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/planes?plan=1",
+					"raw": "http://localhost:7080/planes?plan=2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -472,6 +634,31 @@
 					"query": [
 						{
 							"key": "plan",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "consultComunicadosById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/comunicados?comunicado=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicados"
+					],
+					"query": [
+						{
+							"key": "comunicado",
 							"value": "1"
 						}
 					]
@@ -510,7 +697,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/residentes?residente=2",
+					"raw": "http://localhost:7080/residentes?residente=1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -522,7 +709,7 @@
 					"query": [
 						{
 							"key": "residente",
-							"value": "2"
+							"value": "1"
 						}
 					]
 				}
@@ -535,7 +722,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/familiar/2",
+					"raw": "http://localhost:7080/familiar/65",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -543,7 +730,7 @@
 					"port": "7080",
 					"path": [
 						"familiar",
-						"2"
+						"65"
 					]
 				}
 			},
@@ -555,7 +742,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/centro/20",
+					"raw": "http://localhost:7080/centro/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -563,7 +750,7 @@
 					"port": "7080",
 					"path": [
 						"centro",
-						"20"
+						"2"
 					]
 				}
 			},
@@ -575,7 +762,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/plan/1",
+					"raw": "http://localhost:7080/plan/3",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -583,7 +770,27 @@
 					"port": "7080",
 					"path": [
 						"plan",
-						"1"
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteComunicado",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7080/comunicado/34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicado",
+						"34"
 					]
 				}
 			},
@@ -615,7 +822,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:7080/residente/34",
+					"raw": "http://localhost:7080/residente/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -623,7 +830,7 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"34"
+						"1"
 					]
 				}
 			},
@@ -665,7 +872,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": " {\r\n    \"id\": 1,\r\n    \"nombre\": \"Residencia Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro 365015, Lalín, Pontevedra\",\r\n    \"numRegistro\": \"G458963\",\r\n    \"email\": \"residencia.lalin@alberto.com\",\r\n    \"telefono\": \"600623180\"\r\n}\r\n",
+					"raw": " {\r\n    \"id\": 34,\r\n    \"nombre\": \"Centro de Día Lalín\",\r\n    \"direccion\": \"Filgueiroa, Nº 60, Donramiro, Lalín\",\r\n    \"numRegistro\": \"G698745\",\r\n    \"email\": \"centrodia.lalin@alberto.com\",\r\n    \"telefono\": \"700623180\"\r\n}\r\n",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -673,7 +880,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7080/centro/1",
+					"raw": "http://localhost:7080/centro/34",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -681,7 +888,7 @@
 					"port": "7080",
 					"path": [
 						"centro",
-						"1"
+						"34"
 					]
 				}
 			},
@@ -694,7 +901,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"nombrePlan\": \"GeroBasquet\",\r\n    \"terapia\": \"Terapias lúdicas\",\r\n    \"fechaInicio\": \"08-11-2021\",\r\n    \"fechaFin\": null,\r\n    \"importante\": true,\r\n    \"descripcion\": \"Juego con varios residentes, deben encestar la pelota desde distintas distancias\"\r\n}",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"nombrePlan\": \"Terapia Cognitiva\",\r\n    \"terapia\": \"Juegos Lúdicos\",\r\n    \"fechaInicio\": \"01-12-2021\",\r\n    \"fechaFin\": \"\",\r\n    \"importante\": false,\r\n    \"descripcion\": \"Pasatienpos adaptados, lectura, clases adaptadas...\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -702,7 +909,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7080/plan/1",
+					"raw": "http://localhost:7080/plan/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -710,6 +917,35 @@
 					"port": "7080",
 					"path": [
 						"plan",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateComunicado",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nombreComunicado\": \"Comunicado Situación Covid\",\r\n    \"fechaEnvio\": \"21-12-2021\",\r\n    \"descripcion\": \"Os informamos que el cribado por PCR realizado en el centro ha arrojado un resultado negativo en todas las pruebas realizadas.\",\r\n    \"profesional\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/comunicado/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicado",
 						"1"
 					]
 				}
@@ -760,7 +996,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:7080/residente/65",
+					"raw": "http://localhost:7080/residente/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -768,7 +1004,181 @@
 					"port": "7080",
 					"path": [
 						"residente",
-						"65"
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarSaldoResidente",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "100",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/residente/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"residente",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarTelefonoCentro",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "900623180",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/centro/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"centro",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarTelefonoFamiliar",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "923568978",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/familiar/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"familiar",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarFechaFinPlan",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "false",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/plan/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"plan",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarCategoriaProfesional",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Fisioterapeuta",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/profesional/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"profesional",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ModificarDescripcionComunicado",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "Os informamos que el cribado por PCR realizado en el centro ha arrojado un resultado negativo en todas las pruebas realizadas. Nuevo cribado en 5 días.",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7080/comunicado/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7080",
+					"path": [
+						"comunicado",
+						"1"
 					]
 				}
 			},
