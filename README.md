@@ -4,8 +4,12 @@
 
 1. ENUNCIADO
 
-Una empresa dedicada al cuidado de personas mayores, salud mental y  discapacidad nos encarga el desarrollo de una 
+
+Una empresa dedicada al cuidado de personas mayores, salud mental y  discapacidad nos encarga el desarrollo de una
 App de comunicación con las familias. Indican que esta debe ser adaptable a iOS y ANDROID.
+
+Para ello debemos desarrollar una una aplicación web que conecte con una Base de Datos Relacional.
+Se debe implementar una aplicación web que gestione información almacenándola y recuperándola de una Base de
    
 Para ello debemos desarrollar una una aplicación web que conecte con una Base de Datos Relacional.
 Se debe implementar una aplicación web que gestione información almacenándola y recuperándola de una Base de 
@@ -13,7 +17,7 @@ Datos Relacional. Se pensará en un supuesto real y se crearán las operaciones 
 
 
 1. Deberemos tener identificados los residentes, profesionales, los centros de trabajo y los planes en los que participan.
-2. Se prodra consultar y crear, modificar o elminar sobre cada una de las clases anteriores.
+2. Se prodrá consultar y crear, modificar o elminar sobre cada una de las clases anteriores.
 3. Se configurará una colección Postman que permita probar todas las operaciones anteriores.
 4. Posibilidad de incluir los distintos familiares de los residentes para que tengan acceso.
 5. Emisión de comunicados y alertas a los usuarios por parte del profesional
