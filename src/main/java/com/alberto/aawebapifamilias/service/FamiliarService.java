@@ -1,9 +1,7 @@
 package com.alberto.aawebapifamilias.service;
 
-import com.alberto.aawebapifamilias.domain.Centro;
 import com.alberto.aawebapifamilias.domain.Familiar;
 import com.alberto.aawebapifamilias.domain.Residente;
-import com.alberto.aawebapifamilias.domain.dto.FamiliarDto;
 import com.alberto.aawebapifamilias.exception.FamiliarNotFoundException;
 
 import java.util.List;

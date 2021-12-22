@@ -101,6 +101,7 @@ public class FamiliarController {
     @ExceptionHandler(FamiliarNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleFamiliarNotFoundException(FamiliarNotFoundException fnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", fnfe.getMessage());
+        logger.error(fnfe.getMessage(), fnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -115,6 +116,7 @@ public class FamiliarController {
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
         ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
+        logger.error(exception.getMessage(), exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

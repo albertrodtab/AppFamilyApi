@@ -97,6 +97,7 @@ public class ProfesionalController {
     @ExceptionHandler(ProfesionalNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProfesionalNotFoundException(ProfesionalNotFoundException profnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", profnfe.getMessage());
+        logger.error(profnfe.getMessage(), profnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -104,6 +105,7 @@ public class ProfesionalController {
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
         ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
+        logger.error(exception.getMessage(), exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

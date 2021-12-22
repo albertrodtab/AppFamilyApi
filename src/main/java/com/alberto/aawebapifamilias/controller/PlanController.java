@@ -116,17 +116,19 @@ public class PlanController {
     @ExceptionHandler(PlanNotFoundException.class)
     public ResponseEntity<ErrorResponse> handlePlanNotFoundException(PlanNotFoundException pnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", pnfe.getMessage());
+        logger.error(pnfe.getMessage(), pnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(ProfesionalNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleProfesionalNotFoundException(ProfesionalNotFoundException profnfe){
         ErrorResponse errorResponse = new ErrorResponse("404", profnfe.getMessage());
+        logger.error(profnfe.getMessage(), profnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
     public ResponseEntity<ErrorResponse> handleResidenteNotFoundException(ResidenteNotFoundException rnfe){
-        ErrorResponse errorResponse = new ErrorResponse("1", rnfe.getMessage());
+        ErrorResponse errorResponse = new ErrorResponse("404", rnfe.getMessage());
         logger.error(rnfe.getMessage(), rnfe);
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
@@ -134,6 +136,7 @@ public class PlanController {
     @ExceptionHandler
     public ResponseEntity<ErrorResponse> handleException (Exception exception){
         ErrorResponse errorResponse = new ErrorResponse( "1","Internal server error");
+        logger.error(exception.getMessage(), exception);
         return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
