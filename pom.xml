@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.alberto</groupId>
-	<artifactId>aawebapifamilias</artifactId>
+	<artifactId>appfamilyapi</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>aawebapifamilias</name>
+	<name>appfamilyapi</name>
 	<description>Aplicación para residencia de mayores y comunicación con familia</description>
 	<properties>
 		<java.version>11</java.version>
